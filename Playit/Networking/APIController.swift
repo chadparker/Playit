@@ -18,13 +18,12 @@ enum NetworkError: Error {
 final class APIController {
 
     private let baseUrl = URL(string: "https://www.googleapis.com/youtube/v3/")!
-    private let apiKey = "AIzaSyAm-PvBkRlO1tmmZPPDYoMuInQpERbFzDg"
 
     func ytSearch(_ query: String, completion: @escaping (Result<Search, NetworkError>) -> Void) {
         let searchUrl = baseUrl.appendingPathComponent("search")
         var urlComponents = URLComponents(url: searchUrl, resolvingAgainstBaseURL: true)
         urlComponents?.queryItems = [
-            URLQueryItem(name: "key", value: apiKey),
+            URLQueryItem(name: "key", value: Keys.youTube),
             URLQueryItem(name: "part", value: "snippet"),
             URLQueryItem(name: "maxResults", value: "5"),
             URLQueryItem(name: "q", value: query),
